@@ -22,7 +22,7 @@ class Complaint(models.Model):
         ("RJ", "Rejected"),
     )
 
-    status = models.CharField(max_length=5, choices=status_choice,default="UR")
+    status = models.CharField(max_length=5, choices=status_choice)
     category = models.ForeignKey(Category, blank=True, null=True)
     complaint_user = models.ForeignKey(CustUser, blank=True, null=True)
     location = models.CharField(max_length=100)

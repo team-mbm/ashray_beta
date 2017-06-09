@@ -16,7 +16,7 @@ def index(request):
         location = request.POST['location']
         category_obj = Category.objects.get(name = category)
         complaint_user = CustUser.objects.get(user=request.user)
-        complaint=Complaint(complaint_user=complaint_user,name_child=name,category=category_obj,desc=desc, location=location)
+        complaint=Complaint(complaint_user=complaint_user,name_child=name,category=category_obj,desc=desc, location=location, status="URV")
 
         complaint.save()
 
@@ -25,7 +25,7 @@ def index(request):
         context={}
         if request.user.is_authenticated:
             cust_user = CustUser.objects.get(user = request.user)
-
+            print (cust_user.get_user_type_display())
             if cust_user.get_user_type_display() == "Normal":
                 categories = Category.objects.all()
                 context = {
@@ -44,7 +44,10 @@ def index(request):
 
             elif cust_user.get_user_type_display() == "Category Coordinator":
                 complaints = Complaint.objects.filter(status="URA")
+            else:
+                complaints = Complaint.objects.all()
 
+            print(complaints)
             context = {
                 "complaints": complaints,
             }
