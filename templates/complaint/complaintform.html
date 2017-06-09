@@ -1,0 +1,44 @@
+{% extends "complaint/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Complaint Form
+{% endblock %}
+
+{% block content %}
+<section style="min-height:100%;">
+<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 container" style="margin-top: 100px;">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1>Complaint Form</h1>
+      </div>
+    </div>
+    <div class="panel-body">
+        <form method="post">{% csrf_token %}
+                <div class="form-group">
+                    <b>Name of the Child*</b><input class="form-control" name="name" type="text" value="{{ x.name }}" placeholder="Name of the Child" required>
+                </div>
+                <div class="form-group">
+                    <b>Description</b> <textarea class="form-control" name="desc" placeholder="Description" ></textarea>
+                </div>
+                <div class="form-group">
+                    <b>Category*</b>
+                    <input class="form-control" list="categories" name="category" required>
+                      <datalist id="categories">
+                        {% for category in categories %}
+                          <option value="{{category.name}}">
+                        {% endfor %}
+                      </datalist>
+                </div>
+                <div class="form-group">
+                    <b>Location*</b> <textarea class="form-control" name="location" placeholder="location" required></textarea>
+                </div>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+      {{ message }}
+  </div>
+</div>
+</section>
+{% endblock %}

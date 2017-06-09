@@ -1,0 +1,33 @@
+{% extends "complaint/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    SignIn
+{% endblock %}
+
+{% block content %}
+<section style="min-height:80%;">
+<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 container" style="margin-top: 100px;">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title text-center">
+        <h1>Sign In</h1>
+        <p>If don't have an Account? Then please <a href="{% url 'user:signup' %}">sign up</a>.</p>
+      </div>
+    </div>
+    <div class="panel-body">
+        {{message}}
+        <form method="post">{% csrf_token %}
+                <div class="form-group">
+                    <b>Username</b><input class="form-control" name="username" type="text" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <b>Password</b><input class="form-control" name="password" type="password" placeholder="Password" required>
+                </div>
+            <input type="submit" class="btn btn-primary" value="Sign In">
+        </form>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock %}
