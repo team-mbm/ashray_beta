@@ -14,11 +14,13 @@ def index(request):
         category = request.POST['category']
         desc = request.POST['desc']
         location = request.POST['location']
-        complaint=Complaint(complaint_user=request.user,name_child=name,category=category,desc=desc, location=location)
+        category_obj = Category.objects.get(name = category)
+        complaint_user = CustUser.objects.get(user=request.user)
+        complaint=Complaint(complaint_user=complaint_user,name_child=name,category=category_obj,desc=desc, location=location)
 
         complaint.save()
 
-        return render(request,"complaint/complaintform.html",{})
+        return render(request,"complaint/complaintform.html",{"message":"Complaint registered successfully"})
     else:
         context={}
         if request.user.is_authenticated:

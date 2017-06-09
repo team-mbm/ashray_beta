@@ -7,6 +7,13 @@
 
 {% block content %}
 <section style="min-height:100%;">
+
+    {% if message %}
+        <div class="alert alert-success alert-dismissable fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> {{ message }}
+        </div>
+    {% endif %}
 <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 container" style="margin-top: 100px;">
   <div class="panel panel-default">
     <div class="panel-heading">

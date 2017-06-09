@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="panel-body">
-        <form method="post">{% csrf_token %}
+        <form method="post" action="{% url 'user:signup' %}">{% csrf_token %}
                 <div class="form-group">
                     <b>First Name*</b><input class="form-control" name="firstname" type="text" value="{{ x.firstname }}" placeholder="First name" required>
                 </div>
